@@ -1,0 +1,86 @@
+@media only screen and (max-width: 1100px){ 
+    .sign-in-container, .currency-converter div, 
+    main > section > div table,  #chart-container{
+        width: 90%;
+    }
+}
+@media only screen and (max-width: 930px){ 
+    .sign-in-container, .currency-converter div, 
+    main > section > div table,  #chart-container{
+        width: 96%;
+    }
+}
+
+@media only screen and (max-width: 665px){
+  
+    .sign-in-container {
+        height: 56px;
+    }
+    .sign-in-container button{
+        font-size: 16px;
+        float: none;
+        display: block;
+        margin: 0 auto;
+        margin-top: 16px;
+    }
+    .currency-converter > div >  form > div{
+        display: block;
+    } 
+    img {
+        transform: rotate(90deg);
+    }
+    main > section > div  table{
+        width: 30%;
+        margin: 50px auto;
+    }
+    main > section > div > table tbody{
+        display: table-row-group;
+    
+    }
+    main > section > div > table > tbody tr {
+        display: table-row;
+    }
+    
+    main > section > div > table > tbody > tr td:nth-child(1){
+        margin-right: 10px;
+        font-size: 26px;
+        margin: 0;
+        padding: 0;
+    }    
+
+    main > section > div > table > tbody > tr td:nth-child(2){
+        font-size: 21px;
+        margin: 0;
+        padding: 0;
+        padding-left: 10px;
+    }    
+    main > section  + h3 select {
+        font-weight: 400;
+    }
+
+    h3{
+        font-weight: 400;
+    }
+}
+
+@media only screen and (max-width: 400px){
+    .modal{
+        width: 100%;
+        padding-top: 10%;
+    }
+    .modal-sign-in-container {
+        width: 80%;
+    }
+}
+
+
+@media only screen and (min-height: 908px){
+    footer{
+        height: 80px;
+        position: fixed;
+        bottom: 0;
+    }
+    footer p{
+        font-size: 14px;
+    }
+}

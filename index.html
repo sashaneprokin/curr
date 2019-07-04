@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="main.css" rel="stylesheet">
+    <link href="mob-version.css" rel="stylesheet">
+    <title>Курс валют</title>
+</head>
+<body>
+    <main>
+        <div class="sign-in-container">
+            <button class="green-btn" id="sign-in-btn">Вхід</button>
+        </div>
+        <section>
+            <div class="currency-converter">
+                <div>
+                    <h3>Конвертер валют</h3>
+                    <form id="currency-converter">
+                        <div class="left-currency">
+                            <label for="left-quantity">Міняю</label>
+                            <input type="number" min="0" name="left-quantity" id="left-quantity">
+                            <select id="left-currency-select">
+                                <option value="UAH">UAH</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                                <option value="PLN">PLN</option>
+                            </select>
+                        </div>
+                        <img class="reverse-arrow" id="switch-currency" src="img/reverse.svg" alt="Змінити місцями валюти">
+                        <div class="right-currency">
+                            <label for="right-quantity">Отримую</label>
+                            <input type="number" min="0" name="right-quantity" id="right-quantity">
+                            <select id="right-currency-select">
+                                <option value="UAH">UAH</option>
+                                <option value="USD" selected>USD</option>
+                                <option value="EUR">EUR</option>
+                                <option value="PLN">PLN</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div>
+                <!-- <h3>Курс валют</h3> -->
+                <table id="table-currency">
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <h3>Курс  <select id="currecies-select">
+            <option value="USD" selected>USD</option>
+            <option value="EUR">EUR</option>
+            <option value="PLN">PLN</option>
+        </select> до UAH</h3>
+        <div id="chart-container"></div>
+        <footer>
+            <p><b>Адреса:</b> м. Івано-Франківськ, вул. Пасічна, 21</p>
+            <p><b>Телефон:</b> +380730796205</p>
+            <p><b>&#169;</b> Всі права захищено</p>
+        </footer>
+    </main>
+    <div class="modal">
+        <div class="modal-sign-in-container">
+            <button class="close-btn">&times;</button>
+            <br>
+            <h2>Вхід</h2>
+            <form id="sign-in-form">
+                <p>
+                    <input type="email" name="email" id="email" placeholder="E-mail" required>
+                </p>
+                <p>
+                    <input type="password" name="" id="password" placeholder="Пароль" required>
+                    <p></p>
+                </p>
+                <input type="submit" value="Увійти" class="green-btn">
+                <span>Зареєструватися</span>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
