@@ -3,6 +3,14 @@ const CURRENCIES = ["USD", "EUR", "PLN"];
 const curreciesDataPromises = getDataPromises(CURRENCIES, BASE);
 console.log(curreciesDataPromises)
 // fill table
+/* Functionality: this function launches first, that passes a cycle on an array(Currencies)
+and make a call on every item a function gets HistoricalDataForCurrency and returns
+a promise. Then promise is pushed in a loop for promises so we're able to get itself
+more than one time and call a function to initialize a table row (cos currency doesn't look
+like a table notwithstanding it's a table in a mark-up.) It receives data, and sends it to store
+and initialize a table.
+*/
+
 function getDataPromises(currencies, base){
     const promises = [];
     for(let currency of currencies){
@@ -48,11 +56,15 @@ document.getElementById("sign-in-form").addEventListener("submit", (e) => {
     closeModal();
 });
 
+//Functionality: is executed when u click on a cross of a modal window
 function closeModal() {
     document.querySelector(".modal").style.display = "none";
     document.getElementById("email").value = "";
     document.getElementById("password").value = "";
 }
+/*Functionality: converter and graph r independent, handleConverter attaches
+an Event Handler to inputs and converter's selectors.
+*/
 function handleConverter() {
     let leftInput = document.getElementById("left-quantity");
     let leftSelect = document.getElementById("left-currency-select");
@@ -91,6 +103,13 @@ function handleConverter() {
     }
 }
 
+/*
+Functionality: Handler convertCurrencyValue is a function. Firstly it checks
+if values r true. Then, if currency is chosen in both selectors r the same, then
+the value 1:1. Then if it converts to national currency, the value is divided to rate,
+vice versa multiplies. If previous conditions were executed then the function'd finished.
+If no it finds a rate between currency and multiply input's value.
+*/
 function convertCurrencyValue({fromInput, toInput, fromSelect, toSelect}){
     if(fromInput.value == "" || fromInput.value < 0) {
         if(toInput.value != "") toInput.value = "";
@@ -119,7 +138,7 @@ function convertCurrencyValue({fromInput, toInput, fromSelect, toSelect}){
     toInput.value = ((rateFrom / rateTo) * fromInput.value).toFixed(3);
 }
 
-
+//adds a row in a table
 function addRowCurrency({ currency, valueToday }){
     console.log(currency, valueToday)
     let table = document.getElementById("table-currency");
@@ -134,11 +153,17 @@ function addRowCurrency({ currency, valueToday }){
     exchangeCell.textContent = valueToday;
 }
 
+/*
+This function requests on API for values of current currency for a last month. Then
+it parses and format response in a format where it's convenient to work w/ and return
+a promise, that is continually using.
+*/
 function getHistoricalDataForCurrency(currency, base){
     const today = new Date();
     const startDay = new Date(today.getFullYear(), today.getMonth()-1, today.getDate());
     const formatDate = (date) => `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
 
+    // Preview's politic doesn't permit to load http, it creates it's own proxy, so we add proxy here
     const promise = fetch(`https://cors-anywhere.herokuapp.com/http://currencies.apps.grandtrunk.net/getrange/${formatDate(startDay)}/${formatDate(today)}/${currency}/${base}`, {
         mode: "cors"
     })
@@ -160,7 +185,11 @@ function getHistoricalDataForCurrency(currency, base){
     return promise;
 }
 
-
+/*
+Functionality: A set of values r transfer in a function(a moment of time, value),
+thanks to which Highchart is building a graph, and name of currency for the sake of
+displaying a tooltip's window correctly(if u lead on any point on a graph).
+*/
 function initHighchart(data, currency){
     Highcharts.chart("chart-container", {
         chart: {
