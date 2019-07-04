@@ -10,7 +10,6 @@ more than one time and call a function to initialize a table row (cos currency d
 like a table notwithstanding it's a table in a mark-up.) It receives data, and sends it to store
 and initialize a table.
 */
-
 function getDataPromises(currencies, base){
     const promises = [];
     for(let currency of currencies){
